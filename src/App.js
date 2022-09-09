@@ -71,8 +71,6 @@ function App() {
       const [reorderedItem] = originArr.splice(move.source.index, 1);
       const destinationArr = items[move.destination.droppableId];
       destinationArr.splice(move.destination.index, 0, reorderedItem);
-      prevItems[move.source.droppableId] = originArr;
-      prevItems[move.destination.droppableId] = destinationArr;
       return prevItems;
     });
   }
