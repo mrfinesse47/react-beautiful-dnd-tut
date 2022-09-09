@@ -64,13 +64,15 @@ const charactersObj = {
 function App() {
   const [items, setItems] = useState(charactersObj);
 
-  function handleOnDragEnd(move) {
-    if (!move.destination) return;
+  function handleOnDragEnd({ destination, source }) {
+    if (!destination) return;
     setItems((prevItems) => {
-      const originArr = items[move.source.droppableId];
-      const [reorderedItem] = originArr.splice(move.source.index, 1);
-      const destinationArr = items[move.destination.droppableId];
-      destinationArr.splice(move.destination.index, 0, reorderedItem);
+      const [reorderedItem] = items[source.droppableId].splice(source.index, 1);
+      items[destination.droppableId].splice(
+        destination.index,
+        0,
+        reorderedItem
+      );
       return prevItems;
     });
   }
