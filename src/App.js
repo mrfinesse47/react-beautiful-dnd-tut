@@ -58,12 +58,14 @@ const charactersObj = {
       thumb: '/images/quinn.png',
     },
   ],
+  characters2: [],
 };
 
 function App() {
   const [items, setItems] = useState(charactersObj);
 
   function handleOnDragEnd(move) {
+    if (!move.destination) return;
     setItems((prevItems) => {
       const originArr = items[move.source.droppableId];
       const [reorderedItem] = originArr.splice(move.source.index, 1);
